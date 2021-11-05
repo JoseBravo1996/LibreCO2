@@ -1,0 +1,36 @@
+{
+    "movies": [
+        {
+            "concentracion": "350-450 ppm",
+            "efecto": "Concentración atmosférica común"
+        },
+        {
+            "concentracion": "600-800 ppm",
+            "efecto": "Calidad fiable del aire interior"
+        },
+        {
+            "concentracion": "1000 ppm",
+            "efecto": "Calidad aún fiable del aire interior"
+        },
+        {
+            "concentracion": "5000 ppm",
+            "efecto": "Concentración máxima en el lugar de trabajo luego de 8 horas"
+        },
+        {
+            "concentracion": "6000-30000 ppm",
+            "efecto": "Cuestionable, solo carga breve"
+        },
+        {
+            "concentracion": "3-8%",
+            "efecto": "Frecuencia respiratoria elevada, dolor de cabeza"
+        },
+        {
+            "concentracion": "> 10%",
+            "efecto": "Náuseas, vómito, pérdia del conocimiento"
+        },
+        {
+            "concentracion": "> 20%",
+            "efecto": "Pérdida repentina del conocimiento, muerte"
+        }
+    ]
+}

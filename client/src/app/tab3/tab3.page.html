@@ -1,17 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Información
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="ion-padding">
+    <ngx-datatable class="dark" [rows]="rows" [rowHeight]="50" [columns]="columns" [columnMode]="'force'"
+      [sortType]="'multi'">
+    </ngx-datatable>
+  </div>
+  <ion-card>
+    <ion-card-header color="danger">
+      <ion-card-title>¿Niveles de concentración de CO2?</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      En el exterior, habitualmente los niveles de CO² se encuentran entre 300 y 400 ppm (partes por millón), pudiendo
+      alcanzar en zonas urbanas valores de hasta 550 ppm.
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+      En los ambientes interiores no industriales como oficinas, escuelas y servicios en general se encuentran valores
+      de 2.000 y hasta 3.000 ppm.
+
+      Para los profesionales, el límite de exposiciones diarias de 8 horas es de 5.000 ppm.
+
+      En exposiciones puntuales de una duración máxima de 15 min. estas tienen un valor límite de 15.000 ppm.
+
+      Si se superan estos niveles puede deberse a una combustión incontrolada, en cuyo caso el riesgo para la salud
+      puede no ser debido al dióxido de carbono sino a la presencia de otros subproductos de la combustión,
+      principalmente el monóxido de carbono (CO), cuyo límite de exposición es muy inferior (25 ppm).
+
+      En el ámbito doméstico los valores ideales de dióxido de carbono en una vivienda son entre los 300 – 500 ppm,
+      cuando se superan los valores de 1000 -1200 ppm hay que tomar medidas y ventilar todas las estancias.
+
+      En la siguiente imagen dejamos un resumen de lo comentado hasta el momento, las distintas relaciones entre
+      concentraciones de CO² y efectos.
+    </ion-card-content>
+  </ion-card>
 </ion-content>

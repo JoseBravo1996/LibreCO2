@@ -1,17 +1,28 @@
-<ion-header [translucent]="true">
+<ion-header translucent>
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Actual</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-header *ngIf="weatherData">
+      <div *ngIf="weatherData.isDay" class="weatherWidgetRow">
+        <fa-icon icon="sun" class="sun" size="5x"></fa-icon>
+      </div>
+      <div *ngIf="!weatherData.isDay" class="weatherWidgetRow">
+        <fa-icon icon="moon" class="moon" size="5x"></fa-icon>
+      </div>
+      <div class="weatherWidgetRow cloudDiv">
+        <fa-icon icon="cloud" class="cloud" size="5x"></fa-icon>
+      </div>
+      <ion-card-subtitle style="font-size:20px; text-align-last: center;">{{weatherData.temp_celcius}}°
+      </ion-card-subtitle>
+      <ion-card-title style="font-size:30px; text-align-last: center;">{{weatherData.name}}</ion-card-title>
+      <ion-card-subtitle style="font-size:20px; text-align-last: center;">Humedad: {{weatherData.main.humidity}}%
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title style="font-size:60px; text-align-last: center;">{{ppm}} PPM</ion-card-title>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
