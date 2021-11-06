@@ -1,9 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
 
-
+import { comedorData, comedorTiempo } from '../../assets/prueba.js';
 import { Chart, registerables } from 'chart.js';
 import { Socket } from 'ngx-socket-io';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-tab2',
@@ -31,14 +32,16 @@ export class Tab2Page {
   }
 
   barCartMethod() {
+    let datos = of(comedorData);
+    datos.subscribe(resp => console.log(resp));
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: [2021,2022,2023,2024],
+        labels: comedorTiempo,
         datasets: [
           {
-            label: "Alta",
-            data: [200, 300, 150, 450],
+            label: "Comedor",
+            data: comedorData,
             borderColor: '#FF0000',
             backgroundColor: '#FF0000',
 
@@ -74,8 +77,8 @@ export class Tab2Page {
         },
         scales: {
           y: {
-            min: 100,
-            max: 1000,
+            min: 1500,
+            max: 3000,
           }
         }
       }
