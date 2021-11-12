@@ -1,10 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
 
-import { comedorData, ambienteYPFData, tiempo } from '../../assets/prueba.js';
+import { comedorData, patioYPFData, YPFData, tiempo } from '../../assets/prueba.js';
 import { Chart, registerables } from 'chart.js';
 import { Socket } from 'ngx-socket-io';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-tab2',
@@ -52,17 +51,16 @@ export class Tab2Page {
             backgroundColor: '#FF0000',
           },
           {
-            label: "YPF Exterior",
-            data: ambienteYPFData,
+            label: "Patio YPF",
+            data: patioYPFData,
             borderColor: '#49FF00',
             backgroundColor: '#49FF00',
           },
           {
-            label: "Otros",
-            data: [500],
+            label: "YPF",
+            data: YPFData,
             borderColor: '#FF00FF',
             backgroundColor: '#FF00FF',
-
           }
         ]
       },
@@ -76,8 +74,8 @@ export class Tab2Page {
         },
         scales: {
           y: {
-            min: 100,
-            max: 3000,
+            min: 200,
+            max: 900,
           }
         }
       }
@@ -109,8 +107,8 @@ export class Tab2Page {
         },
         scales: {
           y: {
-            min: 100,
-            max: 3000,
+            min: 200,
+            max: 900,
           }
         }
       }
