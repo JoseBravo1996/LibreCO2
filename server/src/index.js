@@ -21,7 +21,7 @@ const port = new serialPort('COM5', {
     baudRate: 9600
 });
 
-const parser = port.pipe(new readLine({ delimeter: '\r\n' }));
+const parser = port.pipe(new readLine({ delimeter: '\n' }));
 
 io.on('connection', function (socket) {
     console.log('Cliente ' + socket);
@@ -32,8 +32,6 @@ parser.on('open', function () {
 
 parser.on('data', function (data) {
     // let temp = parseInt(data, 10) + " °C";
-
-    console.log('Recibiendo ' + data + ' PPM');
     io.emit('temp', data);
     
 });

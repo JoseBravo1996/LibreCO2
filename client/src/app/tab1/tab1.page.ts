@@ -1,4 +1,3 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 
@@ -9,17 +8,17 @@ import { Socket } from 'ngx-socket-io';
 })
 export class Tab1Page {
 
-  private ppm: string = '50';
+  private ppm: any = '';
   private today: Date = new Date;
   private weatherData: any;
   public apiKey: string = "a311238c71288f35f6f298a865286288";
-  public ciudad: string = "Berazategui";
+  public ciudad: string = "Quilmes";
 
   constructor(private socket: Socket) {
     this.socket.connect();
 
     this.socket.fromEvent('temp').subscribe(data => {
-      console.log(data);
+      this.ppm = data;
     });
 
     this.getWeatherData();

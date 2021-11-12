@@ -11,12 +11,18 @@
     <ion-card class="welcome-card">
       <ion-card-header>
         <ion-card-subtitle>Número de PPM</ion-card-subtitle>
-        <ion-card-title>Libre CO2</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-          <canvas #barCanvas style="position: relative; height: 20vh; width: 40vh;"></canvas>
+        <canvas #barCanvasRealTime style="position: relative; height: 20vh; width: 40vh;"></canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-subtitle>Número de PPM</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barCanvas style="position: relative; height: 20vh; width: 40vh;"></canvas>
       </ion-card-content>
     </ion-card>
   </ion-content>
-  <!-- <app-explore-container name="Tab 2 page"></app-explore-container> -->
 </ion-content>

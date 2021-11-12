@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
 
-import { comedorData, comedorTiempo } from '../../assets/prueba.js';
+import { comedorData, ambienteYPFData, tiempo } from '../../assets/prueba.js';
 import { Chart, registerables } from 'chart.js';
 import { Socket } from 'ngx-socket-io';
 import { of } from 'rxjs';
@@ -14,56 +14,88 @@ import { of } from 'rxjs';
 export class Tab2Page {
 
   @ViewChild('barCanvas') public barCanvas: ElementRef;
-  ppmList: string[] = [];
+  @ViewChild('barCanvasRealTime') public barCanvasRealTime: ElementRef;
   barChart: any;
+  barChartRealTime:any;
+
+  ppmList: string[] = [];
+  tiempoList: number[] = [];
 
   constructor(private socket: Socket) {
+
+    Chart.register(...registerables);
     this.socket.connect();
 
     this.socket.fromEvent('temp').subscribe((data: string) => {
-      this.ppmList.push(data);
+      this.barChartRealTime.data.datasets[0].data.push(data);
+      this.barChartRealTime.data.labels.push(this.barChartRealTime.data.datasets[0].data.length);
+      this.barChartRealTime.update();
     });
 
-    Chart.register(...registerables);
   }
 
   ionViewWillEnter() {
     this.barCartMethod();
+    this.barCartRealTimeMethod();
   }
 
   barCartMethod() {
-    let datos = of(comedorData);
-    datos.subscribe(resp => console.log(resp));
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: comedorTiempo,
+        labels: tiempo,
         datasets: [
           {
             label: "Comedor",
             data: comedorData,
             borderColor: '#FF0000',
             backgroundColor: '#FF0000',
-
           },
           {
-            label: "Media",
-            data: [100, 150, 250, 300],
-            borderColor: '#FBFF00',
-            backgroundColor: '#FBFF00',
-
-          },
-          {
-            label: "Baja",
-            data: [200, 100, 150, 180],
+            label: "YPF Exterior",
+            data: ambienteYPFData,
             borderColor: '#49FF00',
             backgroundColor: '#49FF00',
           },
           {
-            label: "Sin Resultados",
-            data: [100, 150, 250, 300],
-            borderColor: '#9D9D9D',
-            backgroundColor: '#9D9D9D',
+            label: "Otros",
+            data: [500],
+            borderColor: '#FF00FF',
+            backgroundColor: '#FF00FF',
+
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Analisis Previos'
+          }
+        },
+        scales: {
+          y: {
+            min: 100,
+            max: 3000,
+          }
+        }
+      }
+    })
+  }
+
+  barCartRealTimeMethod() {
+    this.barChartRealTime = new Chart(this.barCanvasRealTime.nativeElement, {
+      type: 'line',
+      data: {
+        labels: tiempo,
+        datasets: [
+          {
+            label: "Real",
+            data: this.ppmList,
+            borderColor: '#FBFF00',
+            backgroundColor: '#FBFF00',
+
           }
         ]
       },
@@ -77,7 +109,7 @@ export class Tab2Page {
         },
         scales: {
           y: {
-            min: 1500,
+            min: 100,
             max: 3000,
           }
         }
